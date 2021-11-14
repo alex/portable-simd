@@ -47,6 +47,7 @@ macro_rules! impl_uint_arith {
     }
 }
 
+#[allow(unused)]
 macro_rules! impl_int_arith {
     ($($ty:ty),+) => {
         $( impl<const LANES: usize> Simd<$ty, LANES> where LaneCount<LANES>: SupportedLaneCount {
@@ -156,4 +157,4 @@ macro_rules! impl_int_arith {
 }
 
 impl_uint_arith! { u8, u16, u32, u64, usize }
-impl_int_arith! { i8, i16, i32, i64, isize }
+// impl_int_arith! { i8, i16, i32, i64, isize }

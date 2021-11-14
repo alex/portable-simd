@@ -1,6 +1,36 @@
 #![allow(non_camel_case_types)]
+use crate::simd::{LaneCount, Simd, SupportedLaneCount};
 
-use crate::simd::Simd;
+mod sealed {
+    pub trait UInt {}
+}
+use sealed::UInt;
+
+impl<const LANES: usize> UInt for Simd<usize, LANES>
+    where LaneCount<LANES>: SupportedLaneCount,
+{
+}
+
+impl<const LANES: usize> UInt for Simd<u8, LANES>
+    where LaneCount<LANES>: SupportedLaneCount,
+{
+}
+
+impl<const LANES: usize> UInt for Simd<u16, LANES>
+    where LaneCount<LANES>: SupportedLaneCount,
+{
+}
+
+impl<const LANES: usize> UInt for Simd<u32, LANES>
+    where LaneCount<LANES>: SupportedLaneCount,
+{
+
+}
+
+impl<const LANES: usize> UInt for Simd<u64, LANES>
+    where LaneCount<LANES>: SupportedLaneCount,
+{
+}
 
 /// Vector of two `usize` values
 pub type usizex2 = Simd<usize, 2>;
